@@ -1,0 +1,23 @@
+{
+  "status": "success",
+  "data": [
+    {
+      "id": "1",
+      "title": "Cozy Apartment",
+      "type": "Apartment",
+      "rooms": 2,
+      "price": 80.0,
+      "amenities": ["Wi-Fi", "TV", "AC"],
+      "description": "A very cozy apartment in the city center."
+    },
+    {
+      "id": "2",
+      "title": "Luxury Villa",
+      "type": "Villa",
+      "rooms": 4,
+      "price": 350.0,
+      "amenities": ["Pool", "Wi-Fi", "Kitchen", "Parking"],
+      "description": "A beautiful luxury villa overlooking the ocean."
+    }
+  ]
+}
