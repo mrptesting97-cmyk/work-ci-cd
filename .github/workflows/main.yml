@@ -3,8 +3,9 @@ name: Build & Release
 on:
   push:
     branches: [ main, master, develop ]
-  pull_request:
-    branches: [ main, master ]
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -56,8 +57,9 @@ jobs:
           cd ..
           zip -r app.ipa Payload
 
-      # Create GitHub Release
+      # Create GitHub Release (push only)
       - name: Release
+        if: github.event_name == 'push'
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/*.apk,build/ios/iphoneos/app.ipa"
