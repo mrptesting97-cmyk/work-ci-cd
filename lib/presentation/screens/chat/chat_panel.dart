@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controllers/chat_controller.dart';
+import 'package:host_app/presentation/controllers/chat_controller.dart';
 
 class ChatPanelOverlay extends StatefulWidget {
   const ChatPanelOverlay({super.key});
@@ -78,51 +78,74 @@ class _ChatPanelOverlayState extends State<ChatPanelOverlay> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('AI Host Assistant', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                    const Text(
+                      'This is AI Host Assistant ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     IconButton(
-                      icon: const Icon(Icons.close, color: Colors.white, size: 20),
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 20,
+                      ),
                       onPressed: _controller.toggleChatPanel,
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
-                    )
+                    ),
                   ],
                 ),
               ),
 
               // Chat Messages
               Expanded(
-                child: Obx(() => ListView.builder(
-                  controller: _scrollController,
-                  padding: const EdgeInsets.all(12),
-                  itemCount: _controller.messages.length,
-                  itemBuilder: (context, index) {
-                    final msg = _controller.messages[index];
-                    return Align(
-                      alignment: msg.isUser ? Alignment.centerRight : Alignment.centerLeft,
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(vertical: 4),
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: msg.isUser ? Colors.blue[600] : Colors.grey[200],
-                          borderRadius: BorderRadius.circular(16),
+                child: Obx(
+                  () => ListView.builder(
+                    controller: _scrollController,
+                    padding: const EdgeInsets.all(12),
+                    itemCount: _controller.messages.length,
+                    itemBuilder: (context, index) {
+                      final msg = _controller.messages[index];
+                      return Align(
+                        alignment: msg.isUser
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(vertical: 4),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: msg.isUser
+                                ? Colors.blue[600]
+                                : Colors.grey[200],
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Text(
+                            msg.text,
+                            style: TextStyle(
+                              color: msg.isUser ? Colors.white : Colors.black87,
+                            ),
+                          ),
                         ),
-                        child: Text(
-                          msg.text,
-                          style: TextStyle(color: msg.isUser ? Colors.white : Colors.black87),
-                        ),
-                      ),
-                    );
-                  },
-                )),
+                      );
+                    },
+                  ),
+                ),
               ),
 
               // Typing status
-              Obx(() => _controller.isTyping.value 
-                  ? const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('AI is thinking...', style: TextStyle(fontSize: 12, color: Colors.grey)),
-                    )
-                  : const SizedBox.shrink()),
+              Obx(
+                () => _controller.isTyping.value
+                    ? const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          'AI is thinking...',
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+              ),
 
               // Input Field
               Container(
@@ -140,8 +163,13 @@ class _ChatPanelOverlayState extends State<ChatPanelOverlay> {
                         onSubmitted: (_) => _handleSend(),
                         decoration: InputDecoration(
                           hintText: 'Type a message...',
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 8,
+                          ),
                           isDense: true,
                         ),
                       ),
@@ -150,13 +178,17 @@ class _ChatPanelOverlayState extends State<ChatPanelOverlay> {
                     CircleAvatar(
                       backgroundColor: Colors.blueAccent,
                       child: IconButton(
-                        icon: const Icon(Icons.send, color: Colors.white, size: 18),
+                        icon: const Icon(
+                          Icons.send,
+                          color: Colors.white,
+                          size: 18,
+                        ),
                         onPressed: _handleSend,
                       ),
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
