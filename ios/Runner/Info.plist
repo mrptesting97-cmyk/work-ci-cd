@@ -45,5 +45,25 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>IconOne</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>IconOne</string>
+				</array>
+			</dict>
+			<key>IconTwo</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>IconTwo</string>
+				</array>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>
