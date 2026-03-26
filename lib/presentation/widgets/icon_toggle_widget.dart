@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class IconToggleWidget extends StatefulWidget {
-  const IconToggleWidget({Key? key}) : super(key: key);
+  const IconToggleWidget({super.key});
 
   @override
   State<IconToggleWidget> createState() => _IconToggleWidgetState();

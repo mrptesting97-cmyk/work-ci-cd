@@ -15,7 +15,7 @@ class GlobalChatWrapper extends StatelessWidget {
     Get.put(ChatController(), permanent: true);
 
     // Key to access the child (which contains the app's Navigator)
-    final GlobalKey _childKey = GlobalKey();
+    final GlobalKey childKey = GlobalKey();
 
     return Material(
       color: Colors.transparent,
@@ -25,7 +25,7 @@ class GlobalChatWrapper extends StatelessWidget {
             builder: (overlayContext) => Stack(
               children: [
                 // Wrap the real app child with a KeyedSubtree so we can obtain its context
-                KeyedSubtree(key: _childKey, child: child),
+                KeyedSubtree(key: childKey, child: child),
                 const DraggableChatHead(),
                 const ChatPanelOverlay(),
                 // Global floating button to open the icon toggle from any screen
@@ -36,7 +36,7 @@ class GlobalChatWrapper extends StatelessWidget {
                     child: FloatingActionButton(
                       heroTag: 'iconToggle',
                       onPressed: () {
-                        final ctx = _childKey.currentContext ?? overlayContext;
+                        final ctx = childKey.currentContext ?? overlayContext;
                         showModalBottomSheet(
                           context: ctx,
                           isScrollControlled: true,
