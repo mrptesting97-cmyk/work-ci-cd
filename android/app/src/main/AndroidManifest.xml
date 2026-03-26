@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.host_app">
-
     <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
-<<<<<<< HEAD
-        android:label="my app"
-        android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
-=======
         android:label="hot wheels"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round">
 
-        <!-- MainActivity has NO LAUNCHER intent-filter — prevents a duplicate icon.
-             Flutter tooling still works fine; the aliases below handle launching. -->
->>>>>>> app-icon
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -29,21 +19,19 @@
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />
-            <!-- ✅ Flutter tooling REQUIRES this MAIN action here -->
+
+            <!-- ✅ Flutter needs LAUNCHER here to detect the entry point -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-                <!-- NOTE: No LAUNCHER category here — avoids a home screen icon
-                     directly from MainActivity. The aliases below are the sole
-                     entry points visible to the launcher. -->
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <!-- DEFAULT icon alias — ENABLED by default, this is your normal app icon.
-             Only ONE alias should be enabled="true" at any given time. -->
+        <!-- DEFAULT icon alias — enabled, overrides MainActivity's icon -->
         <activity-alias
             android:name=".DefaultIcon"
             android:targetActivity=".MainActivity"
-            android:enabled="true"
+            android:enabled="false"
             android:icon="@drawable/app_icon"
             android:exported="true">
             <intent-filter>
@@ -78,19 +66,15 @@
             </intent-filter>
         </activity-alias>
 
-        <!-- Required by Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-
     </application>
 
-    <!-- Required for Flutter's ProcessTextPlugin -->
     <queries>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
-
 </manifest>
